@@ -1,0 +1,119 @@
+<!--
+Checked in by: adambu
+Date Created: 01/21/2018
+
+Product Area Tags: Authentication / Authorization, Azure, Graph / OneDrive,
+
+Technology Tags: Client OM, JavaScript / JSOM, REST,
+
+Use Case:
+This is for uploading files larger than 4 MB to OneDrive or SharePoint Libraries using Graph API.
+
+Description:
+This sample uses ADAL.js in order to get an access token to the https://graph.microsoft.com resource.  
+It then lists the files in the OneDrive library (you can change to any SharePoint library if you can get the ID of the Drive in order to set the correct path), 
+and lets you upload a large file using the createUploadSession method.  There's a fair amount of logic you much create in order to get the "Content-Range" header 
+correctly formated for each PUT operation that much be called ot upload each chunk to the upload session that you create in the first POST to /createUploadSession.
+
+To run the sample change the ClientId in the config.js file.
+
+Keywords: Graph API ADAL.js OAuth2 JavaScript jQuery createUploadSession "Large Files" upload files
+
+-->
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>A SPA sample demonstrating Azure AD and ADAL JS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/App/Content/app.css">
+</head>
+
+<body role="document">
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="app-user navbar-text"></li>
+                    <li>
+                        <a href="javascript:;" class="app-logout">Logout</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="app-login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="container" role="main">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1" style="background-color:azure">
+                <div class="page-header">
+                    <h1>ADAL JS with jQuery Upload Session Example</h1>
+                </div>
+                <p>This sample demonstrates how to take advantage of ADAL JS for adding Azure AD authentication to your JavaScript
+                    apps built with jQuery.</p>
+                <p>This sample also demonstrates how to use createUploadSession which is required to upload files larger than 4MB using Microsoft Graph API .</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <div class="app-error"></div>
+                <div class="data-loading"></div>
+                <div class="panel-body">
+                    <table class="table table-striped table-bordered table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody class="data-container">
+                            <tr class="data-row">
+                                <td class="view-data-type"></td>
+                                <td class="view-data-name"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td align="left">
+                                    <input type="file" name="trigger" id="trigger" width="500px" accept="*/*">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <button name="btnUpload" id="btnUpload">Upload</button>
+                                </td>
+                            </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!--<script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.0/js/adal.min.js"></script>-->
+    <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.0/js/adal.js"></script>
+    <script src="App/Scripts/config.js"></script>
+    <script src="App/Scripts/app.js"></script>
+
+    <script src="App/Scripts/graphOps.js"></script>
+
+</body>
+
+</html>

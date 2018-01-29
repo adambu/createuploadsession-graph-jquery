@@ -1,0 +1,8 @@
+.app-error {
+    color: red; 
+} 
+
+input[type=file] {
+    display: block; 
+    width: 500px; 
+}
