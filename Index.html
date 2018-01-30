@@ -1,27 +1,3 @@
-<!--
-Checked in by: adambu
-Date Created: 01/21/2018
-
-Product Area Tags: Authentication / Authorization, Azure, Graph / OneDrive,
-
-Technology Tags: Client OM, JavaScript / JSOM, REST,
-
-Use Case:
-This is for uploading files larger than 4 MB to OneDrive or SharePoint Libraries using Graph API.
-
-Description:
-This sample uses ADAL.js in order to get an access token to the https://graph.microsoft.com resource.  
-It then lists the files in the OneDrive library (you can change to any SharePoint library if you can get the ID of the Drive in order to set the correct path), 
-and lets you upload a large file using the createUploadSession method.  There's a fair amount of logic you much create in order to get the "Content-Range" header 
-correctly formated for each PUT operation that much be called ot upload each chunk to the upload session that you create in the first POST to /createUploadSession.
-
-To run the sample change the ClientId in the config.js file.
-
-Keywords: Graph API ADAL.js OAuth2 JavaScript jQuery createUploadSession "Large Files" upload files
-
--->
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
